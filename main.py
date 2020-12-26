@@ -37,4 +37,27 @@ def publictweet():
         print('Ha ocurrido un error')
 
 
-publictweet()
+def getAllTweetByUser():
+    print('Ingrese el id del usuario')
+    user = str(input())
+    if(len(user) == 0):
+        print('El nombre de usuario no es valido')
+        sys.exit()
+    for status in tweepy.Cursor(api.user_timeline, id=user, tweet_mode="extended").items():
+        print(status.full_text)
+
+print('Escriba la accion a ealizar')
+print('1 <= Escribir un tweet')
+print('2 <= Obtener los tweet de un usuario')
+
+response = str(input())
+if(response == '1'):
+    publictweet()
+elif(response == '2'):
+    getAllTweetByUser()
+else:
+    print('El valor ingresado: ', response,' no es valido')
+
+
+
+
